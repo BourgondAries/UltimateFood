@@ -24,8 +24,8 @@ function [nutrient_names, food_names, food_nutrients] = loadDatabase()
     nutrients = [];
     while ~feof(fileID)
         
-        nut = fgets(fileID);
-        nut = nut(2:length(nut)-1);
+        nut = fgetl(fileID);
+        nut = nut(2:length(nut));
  
         if length(nutrients) == 0
             nutrients = [nutrients nut];
