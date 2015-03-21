@@ -62,7 +62,8 @@ function runGUI()
             'ColumnEditable', [false true false],...
             'ColumnWidth', {100 80 120 'auto'},...
             'RowName', [],...
-            'Position', [540 80 200 400]...
+            'Position', [540 80 200 400],...
+            'CellEditCallback', @editCellRequirements...
     );
         
     output_table = {};
@@ -103,8 +104,17 @@ function runGUI()
         close(window);
     end
 
+    function editCellNutrients(source, callbackdata)
+        
+    end
+
+    function editCellRequirements(source, callbackdata)
+        disp(desired.Data(:, 2));
+        desired_nutrients(:, 2) = desired.Data(:, 2);
+    end
+
     function setOutputTable(food_amount_array, deviation)
-        output_table = food_amount_array;
+        output_table = [food_amount_array];
         result.Data = output_table;
     end
 
