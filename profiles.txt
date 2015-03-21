@@ -1,0 +1,10 @@
+%
+% This file contains user profiles whith disired nutrients
+% A % means a comment and is ignored by the parser.
+% The empty line (without % signifies the start of the list).
+% A profile consists of 3 lines: Profile name, nutrients (must be same as all others), values.
+%
+
+%Average adult
+%Energy		Carbohydrates		Fat		Proteins	Fiber		Cholesterol
+8700000		0.310				0.07	0.05		0.0003		0.0003
