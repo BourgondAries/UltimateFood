@@ -11,7 +11,6 @@ function runGUI()
         'Position', [500, 250, 1000, 500]...
     );
     
-    food_nutrients = food_nutrients;
     temporary = {};
     food_stuffs = {};
     iterator = 1;
@@ -48,7 +47,11 @@ function runGUI()
     desired_nutrients = ...
     {...
         'Energy'            10000000    'Joule';...
-        'Carbohydrates'     0.4         'kg';...
+        'Carbohydrate'      0.4         'kg';...
+        'Fat'               0.3         'kg';...
+        'Protein'           0.2         'kg';...
+        'Fiber'             0.1         'kg';...
+        'Cholesterol'       3*10^-4     'kg';...
     };
         
     desired = uitable...
@@ -101,13 +104,16 @@ function runGUI()
     end
 
     function setOutputTable(food_amount_array, deviation)
-        output_table = {'why' 'u' 'do' 'dis'};
+        output_table = food_amount_array;
         result.Data = output_table;
     end
 
     function compute(source, callbackdata)
-        %[ food_amount_array, deviation ] = computeOptimalFood( food_nutrients, desired_nutrients );
-        setOutputTable(0, 0);
+        columm_count = numel(food_stuffs(1, :));
+        input_nutrients = cell2mat(food_stuffs(:, 3:columm_count));
+        cell2mat(desired_nutrients(:,2));
+        [ food_amount_array, deviation ] = computeOptimalFood( transpose(input_nutrients), cell2mat(desired_nutrients(:,2)) );
+        setOutputTable(food_amount_array, deviation);
     end
 
     function reloadDatabase(source, callbackdata)

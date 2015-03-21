@@ -5,31 +5,10 @@
 % The empty line (without % signifies the start of the list).
 %
 
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
+%Energy		Carbohydrate		Fat		Proteins	Fiber		Cholesterol
+%Avocados
+%Energy		Carbohydrate		Fat		Proteins	Fiber		Cholesterol
+6694400		0.09 				0.15 	0.020		0.070		0
 %Bananas
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
-0	0 			0.321 	2			6			0
-%Avocados
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
-0	0 			4 		5			0		0
-%Avocados
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
-0	0 			4 		5			0		0
-%Avocados
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
-0	0 			4 		5			0		0
-%Avocados
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
-0	0 			4 		5			0		0
-%Avocados
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
-0	0 			4 		5			0		0
-%Avocados
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
-0	0 			4 		5			0		0
-%Avocados
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
-0	0 			4 		5			0		0
-%Avocados
-%Energy		Sugar		Fat		Proteins	Fiber		Cholesterol
-0	0 			4 		5			0		0
+%Energy		Carbohydrate		Fat		Proteins	Fiber		Cholesterol
+3723760		0.230 				0.003 	0.011		0.026		0
