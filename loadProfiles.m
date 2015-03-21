@@ -26,9 +26,8 @@ function [profile_names, values] = loadProfiles( )
 
     profile_names = strsplit(profiles, '\n');
     profile_names = strtrim(profile_names);
-
     profile_names(length(profile_names)) = [];
+    
     fclose(fileID);
 
 end
-
