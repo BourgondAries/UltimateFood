@@ -1,28 +1,5 @@
 function runGUI()
 
-    [nutrient_names, food_names, food_nutrients] = loadDatabase();
-    [profile_names, profile_values] = loadProfiles();
-    temporary = {};
-    food_stuffs = {};
-    iterator = 1;
-    for i = food_names
-        temporary{numel(temporary) + 1} = i{1};
-        temporary{numel(temporary) + 1} = true;
-        for j = food_nutrients(iterator,:)
-            temporary{numel(temporary) + 1} = j(1);
-        end
-        food_stuffs = [food_stuffs; temporary];
-
-        temporary = {};
-        iterator = iterator + 1;
-    end
-    
-    columnname = {'Food', 'Include'};
-    
-    for i = nutrient_names
-        columnname{numel(columnname) + 1} = i{1};
-    end
-    
     window = figure...
     (...
         'Visible', 'off',...
@@ -34,8 +11,6 @@ function runGUI()
     
     food_stuffs_table = uitable...
     (...
-            'Data', food_stuffs,... 
-            'ColumnName', columnname,...
             'ColumnFormat', {'numeric', 'logical', 'bank'},...
             'ColumnEditable', [true],...
             'ColumnWidth', {60 60 120 'auto'},...
@@ -45,7 +20,6 @@ function runGUI()
         
     desired = uitable...
     (...
-        'Data', {},... 
         'ColumnName', {'Resource', 'Amount'},...
         'ColumnFormat', {'numeric', 'numeric', 'bank'},...
         'ColumnEditable', [false true false],...
@@ -57,7 +31,6 @@ function runGUI()
         
 	result = uitable...
     (...
-        'Data', {},... 
         'ColumnName', {'Food', 'Amount'},...
         'ColumnFormat', {'numeric', 'numeric', 'bank'},...
         'ColumnEditable', [false false],...
@@ -90,12 +63,13 @@ function runGUI()
     profile_menu = uicontrol...
     (...
         'Style', 'popupmenu',...
-        'String', profile_names,...
         'Position', [540 60 120 20],...
         'Callback', @loadProfile...
     );
 
-    loadProfile();
+    profile_values = {};
+
+    reloadDatabase();
 
     function loadProfile(source, callbackdata)
         desired.Data = {};
@@ -139,7 +113,6 @@ function runGUI()
             result.Data = [result.Data; food_stuffs_table.Data(index, 1) food_amount_array(index)];
             index = index + 1;
         end
-        
     end
 
     function compute(source, callbackdata)
@@ -175,6 +148,32 @@ function runGUI()
 
     function reloadDatabase(source, callbackdata)
         [nutrient_names, food_names, food_nutrients] = loadDatabase();
+        [profile_names, profile_values] = loadProfiles();
+        temporary = {};
+        food_stuffs = {};
+        iterator = 1;
+        for i = food_names
+            temporary{numel(temporary) + 1} = i{1};
+            temporary{numel(temporary) + 1} = true;
+            for j = food_nutrients(iterator,:)
+                temporary{numel(temporary) + 1} = j(1);
+            end
+            food_stuffs = [food_stuffs; temporary];
+
+            temporary = {};
+            iterator = iterator + 1;
+        end
+
+        food_stuffs_table.ColumnName = {'Food', 'Include'};
+
+        for i = nutrient_names
+            food_stuffs_table.ColumnName{numel(food_stuffs_table.ColumnName) + 1} = i{1};
+        end
+        
+        food_stuffs_table.Data = food_stuffs;
+        
+        profile_menu.String = profile_names;
+        loadProfile();
     end
 
     window.Visible = 'on';
