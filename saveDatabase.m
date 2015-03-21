@@ -1,6 +1,6 @@
 function saveDatabase(cell_array, nutrients )
 
-    fileID = fopen('test.txt', 'w'); %Change 'test.txt' to desired file
+    fileID = fopen('foods.txt', 'w'); %Change  to desired file
     
     nutrients = transpose(nutrients);
     
