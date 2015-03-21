@@ -107,7 +107,7 @@ function runGUI()
     reloadDatabase();
 
     function saveProfileCallback(source, callbackdata)
-        saveProfile(desired, food_stuffs_table.ColumnName, desired);
+        saveProfile(profile_textbox.String, food_stuffs_table.ColumnName, desired);
     end
     
     function loadProfile(source, callbackdata)
