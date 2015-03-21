@@ -3,12 +3,12 @@ function saveDatabase(cell_array, nutrients )
     fileID = fopen('foods.txt', 'w'); %Change  to desired file
     
     nutrients = transpose(nutrients);
-    
+
     fprintf(fileID,'%s This is the info text\n', '%');
     fprintf(fileID, '\n');
     nuts_str = '';
-    for i=1:length(nutrients)
-        if i==1
+    for i=3:length(nutrients)
+        if i==3
             nuts_str = [nuts_str, sprintf('%s%s\t', '%', nutrients{i})];
         else
             nuts_str = [nuts_str, sprintf('%s\t', nutrients{i})];
