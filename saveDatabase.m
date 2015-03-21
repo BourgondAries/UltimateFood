@@ -1,7 +1,9 @@
 function saveDatabase(cell_array, nutrients )
 
     fileID = fopen('test.txt', 'w'); %Change 'test.txt' to desired file
-
+    
+    nutrients = transpose(nutrients);
+    
     fprintf(fileID,'%s This is the info text\n', '%');
     fprintf(fileID, '\n');
     nuts_str = '';
@@ -16,8 +18,8 @@ function saveDatabase(cell_array, nutrients )
 
     fprintf(fileID,'\n');
     sizes = size(cell_array);
-    rows = sizes(2);
-    cols = sizes(1);
+    cols = sizes(2);
+    rows = sizes(1);
     for i=1:rows
         fprintf(fileID,'%s%s\n','%', cell_array{i,1});
         line = '';
