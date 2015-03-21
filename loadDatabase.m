@@ -8,8 +8,8 @@ function [nutrient_names, food_names, food_nutrients] = loadDatabase()
     food_nutrients = load('foods.txt');
     fileID = fopen('foods.txt');
     
-    nutrient_names = [];
-    food_names = [];
+    nutrient_names = {};
+    food_names = {};
     
     line = '%';
     while strcmp(line(1), '%')
@@ -17,28 +17,29 @@ function [nutrient_names, food_names, food_nutrients] = loadDatabase()
     end
 
     line = fgets(fileID);
-
-    % Need to remove tabs:
-    %{
-    for i=1:(length(line)-2)
-
-        if line(i) && line(i+1)
-            line = [line(1:i-1) line(i+2:end)];
-        end
-    end
-    %}
+    line = line(2:length(line)-2);
     
-    %nutrient_names = strsplit(line, '\t');     For cell to be returned
-    nutrient_names = line;
+    nutrient_names = strsplit(line, '\t');     %For cell to be returned
     
+    nutrients = [];
     while ~feof(fileID)
+        
         nut = fgets(fileID);
         nut = nut(2:length(nut)-2);
-        food_names = [food_names ' '];
-        food_names = [food_names nut];
+        disp(nut)
+        if length(nutrients) == 0
+            nutrients = [nutrients nut];
+        else
+            nutrients = [nutrients ' '];
+            nutrients = [nutrients nut];
+        end
+        
         fgets(fileID);
         fgets(fileID);
+        
     end
+    
+    food_names = strsplit(nutrients, ' ');
 
     fclose(fileID);
 
