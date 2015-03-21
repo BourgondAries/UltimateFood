@@ -151,8 +151,8 @@ function runGUI()
     end
 
     function setOutputTable(food_amount_array, deviation)
-        %format longG;
-        %disp(cell2mat(desired_nutrients(:,2)) .* deviation);
+        format longG;
+        disp(cell2mat(desired_nutrients(:,2)) .* deviation);
         %food_stuffs_table.Data(:, 1)
         
         result.Data = {};
@@ -184,8 +184,14 @@ function runGUI()
             end
             index = index + 1;
         end
+        %{
+        elements = ones(numel(desired.Data(:, 1)), 1);
+        elements(1) = 100000;
         
-        [ food_amount_array, deviation ] = computeOptimalFood( transpose(input_nutrients), ones(numel(desired.Data(:, 1)), 1) );
+        in_nutrients = transpose(input_nutrients);
+        in_nutrients(1) = in_nutrients(1) * 100000;
+        %}
+        [ food_amount_array, deviation ] = computeOptimalFood( in_nutrients, elements );
         setOutputTable(food_amount_array, deviation);
     end
 
