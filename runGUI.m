@@ -2,7 +2,7 @@
 function runGUI()
 
     [nutrient_names, food_names, food_nutrients] = loadDatabase();
-
+    disp(strsplit(nutrient_names, ' '));
     window = figure('Visible', 'off', 'Name', 'Food Finder', 'MenuBar', 'none', 'DockControls', 'off', 'Position', [500, 250, 1000, 500]);
     
     data = ...
@@ -63,12 +63,13 @@ function runGUI()
     end
 
     function setOutputTable(food_amount_array, deviation)
-        output_table.Data = food_amount_array;
+        output_table = {'why' 'u' 'do' 'dis'};
+        result.Data = output_table;
     end
 
     function compute(source, callbackdata)
-        [ food_amount_array, deviation ] = computeOptimalFood( food_nutrients, desired_nutrients );
-        setOutputTable(food_amount_array, deviation);
+        %[ food_amount_array, deviation ] = computeOptimalFood( food_nutrients, desired_nutrients );
+        setOutputTable(0, 0);
     end
 
     function reloadDatabase(source, callbackdata)
