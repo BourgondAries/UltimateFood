@@ -3,9 +3,9 @@
     foods.txt will contain the structure
     for the parsing algorithm.
 %}
-function [nutrients, food_names, database] = loadDatabase()
-    nutrients = 0;
+function [nutrient_names, food_names, food_nutrients] = loadDatabase()
+    nutrient_names = 0;
     food_names = 0;
-    database = 0;
+    food_nutrients = 0;
 end
 
