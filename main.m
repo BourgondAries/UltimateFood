@@ -1,1 +1,1 @@
-g = GUI
+[n,m]=loadProfiles()

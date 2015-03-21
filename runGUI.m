@@ -1,7 +1,7 @@
 function runGUI()
 
     [nutrient_names, food_names, food_nutrients] = loadDatabase();
-    
+    [profile_names, profile_values] = loadProfiles();
     temporary = {};
     food_stuffs = {};
     iterator = 1;
@@ -104,6 +104,24 @@ function runGUI()
         'Position', [100 60 70 20],...
         'Callback', @createNewFoodEntry...
     );
+
+    profile_menu = uicontrol...
+    (...
+        'Style', 'popupmenu',...
+        'String', profile_names,...
+        'Position', [540 60 120 20],...
+        'Callback', @loadProfile...
+    );
+
+    function loadProfile(source, callbackdata)
+        desired.Data = {};
+        number_of_rows = numel(food_stuffs_table.ColumnName);
+        index = 1;
+        while index <= number_of_rows - 2
+            desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index)];
+            index = index + 1;
+        end
+    end
     
     function close(source, callbackdata)
         window.Visible = 'off';
@@ -136,7 +154,6 @@ function runGUI()
         %format longG;
         %disp(cell2mat(desired_nutrients(:,2)) .* deviation);
         %food_stuffs_table.Data(:, 1)
-        %food_amount_array
         
         result.Data = {};
         index = 1;
@@ -144,13 +161,14 @@ function runGUI()
             result.Data = [result.Data; food_stuffs_table.Data(index, 1) food_amount_array(index)];
             index = index + 1;
         end
+        
     end
 
     function compute(source, callbackdata)
         column_count = numel(food_stuffs_table.Data(1, :));
         row_count = numel(food_stuffs_table.Data(:, 1));
         input_nutrients = cell2mat(food_stuffs_table.Data(:, 3:column_count));
-        required_nutrients = transpose(cell2mat(desired_nutrients(:,2)));
+        required_nutrients = transpose(cell2mat(desired.Data(:,2)));
         
         index = 1;
         
@@ -167,7 +185,7 @@ function runGUI()
             index = index + 1;
         end
         
-        [ food_amount_array, deviation ] = computeOptimalFood( transpose(input_nutrients), ones(numel(desired_nutrients(:, 1)), 1) );
+        [ food_amount_array, deviation ] = computeOptimalFood( transpose(input_nutrients), ones(numel(desired.Data(:, 1)), 1) );
         setOutputTable(food_amount_array, deviation);
     end
 
