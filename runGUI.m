@@ -139,10 +139,24 @@ function runGUI()
     end
 
     function compute(source, callbackdata)
-        columm_count = numel(food_stuffs_table.Data(1, :));
-        input_nutrients = cell2mat(food_stuffs_table.Data(:, 3:columm_count));
-        cell2mat(desired_nutrients(:,2));
-        [ food_amount_array, deviation ] = computeOptimalFood( transpose(input_nutrients), cell2mat(desired_nutrients(:,2)) );
+        column_count = numel(food_stuffs_table.Data(1, :));
+        row_count = numel(food_stuffs_table.Data(:, 1));
+        input_nutrients = cell2mat(food_stuffs_table.Data(:, 3:column_count));
+        required_nutrients = transpose(cell2mat(desired_nutrients(:,2)));
+        
+        index = 1;
+        
+        while index <= row_count
+            col_index = 1;
+            for j = required_nutrients
+                input_nutrients(index, col_index) = input_nutrients(index, col_index) / j;
+                col_index = col_index + 1;
+            end
+            index = index + 1;
+        end
+        
+        
+        [ food_amount_array, deviation ] = computeOptimalFood( transpose(input_nutrients), ones(numel(desired_nutrients(:, 1)), 1) );
         setOutputTable(food_amount_array, deviation);
     end
 
