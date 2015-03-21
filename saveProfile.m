@@ -1,12 +1,28 @@
-function saveProfile(profile_name, values )
+function saveProfile(profile_name, nutrients, values )
 
     fileID = fopen('profiles.txt', 'a+');
-
+    
     if (fileID ~= -1)
-        fprintf(fileID, '\n%s%s', '%', profile_name);
-        fprintf(fileID,'\n%sEnergy		Carbohydrates		Fat		Proteins	Fiber		Cholesterol','%');
-        nbytes = fprintf(fileID,'\n%.0f\t\t%.3f\t\t\t\t%.3f\t%.3f\t\t%.3f\t\t%.4f', values(1),values(2),values(3),values(4),values(5),values(6));
-        disp(nbytes)
+        nut_str = '';
+        for i=3:length(nutrients)
+            if i == 3
+                nut_str = [nut_str nutrients{i}];
+            else
+                nut_str = [nut_str ' ' nutrients{i}];
+            end
+        end
+        values_str = '';
+        for i=1:length(values)
+            if i == 1
+                values_str = [values_str num2str(values(1))];
+            else
+                values_str = [values_str sprintf('\t') num2str(values(1))];
+            end
+        end
+
+            fprintf(fileID, '\n%s%s', '%', profile_name);
+            fprintf(fileID,'\n%s%s\n', '%', nut_str);
+            fprintf(fileID, '%s', values_str);
     else
         fprintf('Something went wrong');
     end
