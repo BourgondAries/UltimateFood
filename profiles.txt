@@ -8,3 +8,6 @@
 %Average adult
 %Energy		Carbohydrates		Fat		Proteins	Fiber		Cholesterol
 8700000		0.310				0.07	0.05		0.003		0.0003
+%profile_name
+%Energy		Carbohydrates		Fat		Proteins	Fiber		Cholesterol
+7500000		0.500				0.070	0.070		0.007		0.0007

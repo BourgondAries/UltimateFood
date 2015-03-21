@@ -12,3 +12,12 @@
 %Bananas
 %Energy		Carbohydrate		Fat		Proteins	Fiber		Cholesterol
 3723760		0.230 				0.003 	0.011		0.026		0
+%Oats
+%Energy		Carbohydrate		Fat		Proteins	Fiber		Cholesterol
+15900000	0.677 				0.0065 	0.0132		0.0101		0
+%Milk,light
+%Energy		Carbohydrate		Fat		Proteins	Fiber		Cholesterol
+1800000		0.046 				0.0012 	0.034		0 			0
+%Salmon
+%Energy		Carbohydrate		Fat		Proteins	Fiber		Cholesterol
+5900000		0					0.0634 	0.1984		0 			0
