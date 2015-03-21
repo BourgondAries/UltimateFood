@@ -91,6 +91,8 @@ function runGUI()
             desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index) 1];
             index = index + 1;
         end
+        
+        saveDatabase(food_stuffs_table.Data, food_stuffs_table.ColumnName);
     end
    
     function createNewFoodEntry(source, callbackdata)
