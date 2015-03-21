@@ -146,8 +146,7 @@ function runGUI()
     end
 
     function editCellRequirements(source, callbackdata)
-        disp(desired.Data(:, 2));
-        desired_nutrients(:, 2) = desired.Data(:, 2);
+        
     end
 
     function setOutputTable(food_amount_array, deviation)
@@ -184,13 +183,13 @@ function runGUI()
             end
             index = index + 1;
         end
-        %{
+        
         elements = ones(numel(desired.Data(:, 1)), 1);
-        elements(1) = 100000;
+        %elements(1) = 100000;
         
         in_nutrients = transpose(input_nutrients);
-        in_nutrients(1) = in_nutrients(1) * 100000;
-        %}
+        %in_nutrients(1) = in_nutrients(1) * 100000;
+        
         [ food_amount_array, deviation ] = computeOptimalFood( in_nutrients, elements );
         setOutputTable(food_amount_array, deviation);
     end
