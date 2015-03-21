@@ -18,7 +18,6 @@ function runGUI()
     for i = food_names
         temporary{numel(temporary) + 1} = i{1};
         temporary{numel(temporary) + 1} = true;
-        temporary{numel(temporary) + 1} = 0;
         for j = food_nutrients(iterator,:)
             temporary{numel(temporary) + 1} = j(1);
         end
@@ -28,7 +27,7 @@ function runGUI()
         iterator = iterator + 1;
     end
     
-    columnname = {'Food', 'Include', 'Energy (Joule)'};
+    columnname = {'Food', 'Include'};
     
     for i = nutrient_names
         columnname{numel(columnname) + 1} = i{1};
