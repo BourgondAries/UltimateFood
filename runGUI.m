@@ -36,8 +36,8 @@ function runGUI()
             'RowName', [],...
             'Position', [540 80 200 400]);
         
-    desired_results = {};
-	result = uitable('Data', desired_results,... 
+    output_table = {};
+	result = uitable('Data', output_table,... 
             'ColumnName', {'Food', 'Amount', 'Unit'},...
             'ColumnFormat', {'numeric', 'numeric', 'bank'},...
             'ColumnEditable', [false false false],...
@@ -62,12 +62,13 @@ function runGUI()
         close(window);
     end
 
-    function setTables()
+    function setOutputTable(food_amount_array, deviation)
+        output_table.Data = food_amount_array;
     end
 
     function compute(source, callbackdata)
-        [ food_array, food_amount_array, deviation ] = computeOptimalFood( nutrient_names, food_names, food_nutrients, desired_nutrients )
-        setTables();
+        [ food_amount_array, deviation ] = computeOptimalFood( food_nutrients, desired_nutrients );
+        setOutputTable(food_amount_array, deviation);
     end
 
     function reloadDatabase(source, callbackdata)
