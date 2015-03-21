@@ -112,7 +112,17 @@ function runGUI()
     end
 
     function createNewFoodEntry(source, callbackdata)
-        food_stuffs_table.Data = [food_stuffs_table.Data; cell(1, numel(food_stuffs_table.Data(1, :)))]
+        new_data = cell(1, numel(food_stuffs_table.Data(1, :)));
+        new_data{1} = 'Name';
+        new_data{2} = [true];
+        
+        index = 3;
+        number_of_columns = numel(new_data);
+        while index <= number_of_columns
+            new_data{index} = [0];
+            index = index + 1;
+        end
+        food_stuffs_table.Data = [food_stuffs_table.Data; new_data];
     end
 
     function editCellNutrients(source, callbackdata)
@@ -129,8 +139,8 @@ function runGUI()
     end
 
     function compute(source, callbackdata)
-        columm_count = numel(food_stuffs(1, :));
-        input_nutrients = cell2mat(food_stuffs(:, 3:columm_count));
+        columm_count = numel(food_stuffs_table.Data(1, :));
+        input_nutrients = cell2mat(food_stuffs_table.Data(:, 3:columm_count));
         cell2mat(desired_nutrients(:,2));
         [ food_amount_array, deviation ] = computeOptimalFood( transpose(input_nutrients), cell2mat(desired_nutrients(:,2)) );
         setOutputTable(food_amount_array, deviation);
