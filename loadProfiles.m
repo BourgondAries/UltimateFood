@@ -25,9 +25,7 @@ while ~feof(fileID)
 end
 
 profile_names = strsplit(profiles, '\n');
-for i=1:length(profile_names)
-    profile_names{i} = strtrim(profile_names{i});
-end
+profile_names = strtrim(profile_names);
 
 profile_names(length(profile_names)) = [];
 fclose(fileID);
