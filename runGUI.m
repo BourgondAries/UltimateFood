@@ -134,6 +134,10 @@ function runGUI()
     end
 
     function setOutputTable(food_amount_array, deviation)
+        %deviation = [deviation deviation]
+        %format longG;
+        %disp(cell2mat(desired_nutrients(:,2)) .* deviation);
+        
         output_table = [food_amount_array];
         result.Data = output_table;
     end
@@ -148,13 +152,16 @@ function runGUI()
         
         while index <= row_count
             col_index = 1;
-            for j = required_nutrients
-                input_nutrients(index, col_index) = input_nutrients(index, col_index) / j;
-                col_index = col_index + 1;
+            if food_stuffs_table.Data{index, 2}
+                for j = required_nutrients
+                    input_nutrients(index, col_index) = input_nutrients(index, col_index) / j;
+                    col_index = col_index + 1;
+                end
+            else
+                input_nutrients(index, :) = zeros(1, numel(input_nutrients(1, :)));
             end
             index = index + 1;
         end
-        
         
         [ food_amount_array, deviation ] = computeOptimalFood( transpose(input_nutrients), ones(numel(desired_nutrients(:, 1)), 1) );
         setOutputTable(food_amount_array, deviation);
