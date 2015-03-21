@@ -20,13 +20,12 @@ function runGUI()
         
     desired = uitable...
     (...
-        'ColumnName', {'Resource', 'Amount'},...
+        'ColumnName', {'Resource', 'Amount', 'Importance'},...
         'ColumnFormat', {'numeric', 'numeric', 'bank'},...
-        'ColumnEditable', [false true false],...
+        'ColumnEditable', [false true true],...
         'ColumnWidth', {100 80 120 'auto'},...
         'RowName', [],...
-        'Position', [540 80 200 400],...
-        'CellEditCallback', @editCellRequirements...
+        'Position', [540 80 200 400]...
     );
         
 	result = uitable...
@@ -76,7 +75,7 @@ function runGUI()
         number_of_rows = numel(food_stuffs_table.ColumnName);
         index = 1;
         while index <= number_of_rows - 2
-            desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index)];
+            desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index) 1];
             index = index + 1;
         end
     end
@@ -95,17 +94,10 @@ function runGUI()
         food_stuffs_table.Data = [food_stuffs_table.Data; new_data];
     end
 
-    function editCellNutrients(source, callbackdata)
-    end
-
-    function editCellRequirements(source, callbackdata)
-        
-    end
-
     function setOutputTable(food_amount_array, deviation)
         format longG;
+        disp('Deviation:');
         disp(cell2mat(desired.Data(:,2)) .* deviation);
-        %food_stuffs_table.Data(:, 1)
         
         result.Data = {};
         index = 1;
@@ -137,10 +129,10 @@ function runGUI()
         end
         
         elements = ones(numel(desired.Data(:, 1)), 1);
-        %elements(1) = 100000;
+        elements = elements .* cell2mat(desired.Data(:, 3));
         
         in_nutrients = transpose(input_nutrients);
-        %in_nutrients(1) = in_nutrients(1) * 100000;
+        in_nutrients = bsxfun(@times, in_nutrients, elements);
         
         [ food_amount_array, deviation ] = computeOptimalFood( in_nutrients, elements );
         setOutputTable(food_amount_array, deviation);
