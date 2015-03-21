@@ -6,7 +6,7 @@
 %
 
 %Sugar		Fat		Proteins	Fiber
-%Bananas		
+%Bananas
 %Sugar		Fat		Proteins	Fiber
 0 			0.321 	2			6	
 %Avocados
