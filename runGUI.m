@@ -10,26 +10,26 @@ function runGUI()
         'DockControls', 'off',...
         'Position', [500, 250, 1000, 500]...
     );
-    %{
-    food_names = {'ooga' 'booga'};
-    food_nutrients = {12 13};
+    
+    food_nutrients = food_nutrients;
     temporary = {};
-    food_stuffs = food_names;
+    food_stuffs = {};
+    iterator = 1;
     for i = food_names
         temporary{numel(temporary) + 1} = i{1};
-        for j = food_nutrients
-            temporary{numel(temporary) + 1} = j{1};
+        temporary{numel(temporary) + 1} = true;
+        temporary{numel(temporary) + 1} = 0;
+        for j = food_nutrients(iterator,:)
+            temporary{numel(temporary) + 1} = j(1);
         end
-        food_stuffs = [food_stuffs; temporary];
+        if numel(food_stuffs) > 0
+            food_stuffs = [food_stuffs; temporary];
+        else
+            food_stuffs = temporary;
+        end
+        temporary = {};
+        iterator = iterator + 1;
     end
-    %}
-
-    food_stuffs = ...
-    {...
-        'Banana'    true    456.3457        ;...
-        'Milk'      true    510.2342     	;...   
-        'Apple'     false   658.2           ;...
-    };
     
     columnname = {'Food', 'Include', 'Energy (Joule)'};
     
