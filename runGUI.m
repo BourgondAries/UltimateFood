@@ -1,7 +1,7 @@
 function runGUI()
 
     [nutrient_names, food_names, food_nutrients] = loadDatabase();
-    
+
     window = figure...
     (...
         'Visible', 'off',...
@@ -32,8 +32,6 @@ function runGUI()
     };
     
     columnname = {'Food', 'Include', 'Energy (Joule)'};
-    
-    nutrient_names = {'Powder' 'Chodwe' 'Uc'};
     
     for i = nutrient_names
         columnname{numel(columnname) + 1} = i{1};
