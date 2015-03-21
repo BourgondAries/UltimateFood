@@ -209,15 +209,19 @@ function runGUI()
         saveDatabase(food_stuffs_table.Data, food_stuffs_table.ColumnName);
     end
 
+    selected_food = 1;
     function selectFood(source, callbackdata)
+        if isempty(callbackdata.Indices)
+            return;
+        end
         entry_selected.String = callbackdata.Indices(1);
+        selected_food = callbackdata.Indices(1);
     end
 
     function deleteFoodEntry(source, callbackdata)
-        index = entry_selected.String
-        indices = true(1, size(food_stuffs_table.Data, 1));
-        indices(index) = false;
-        food_stuffs_table.Data = food_stuffs_table.Data(indices, :);
+        if size(food_stuffs_table.Data, 1) >= selected_food
+            food_stuffs_table.Data(selected_food, :) = [];    
+        end
     end
 
     window.Visible = 'on';
