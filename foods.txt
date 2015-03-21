@@ -5,31 +5,31 @@
 % The empty line (without % signifies the start of the list).
 %
 
-%Sugar		Fat		Proteins	Fiber
+%Sugar		Fat		Proteins	Fiber		Cholesterol
 %Bananas
-%Sugar		Fat		Proteins	Fiber
-0 			0.321 	2			6	
+%Sugar		Fat		Proteins	Fiber		Cholesterol
+0 			0.321 	2			6			0
 %Avocados
-%Sugar		Fat		Proteins	Fiber
-3 			4 		5			0
+%Sugar		Fat		Proteins	Fiber		Cholesterol
+3 			4 		5			0		0
 %Avocados
-%Sugar		Fat		Proteins	Fiber
-3 			4 		5			0
+%Sugar		Fat		Proteins	Fiber		Cholesterol
+3 			4 		5			0		0
 %Avocados
-%Sugar		Fat		Proteins	Fiber
-3 			4 		5			0
+%Sugar		Fat		Proteins	Fiber		Cholesterol
+3 			4 		5			0		0
 %Avocados
-%Sugar		Fat		Proteins	Fiber
-3 			4 		5			0
+%Sugar		Fat		Proteins	Fiber		Cholesterol
+3 			4 		5			0		0
 %Avocados
-%Sugar		Fat		Proteins	Fiber
-3 			4 		5			0
+%Sugar		Fat		Proteins	Fiber		Cholesterol
+3 			4 		5			0		0
 %Avocados
-%Sugar		Fat		Proteins	Fiber
-3 			4 		5			0
+%Sugar		Fat		Proteins	Fiber		Cholesterol
+3 			4 		5			0		0
 %Avocados
-%Sugar		Fat		Proteins	Fiber
-3 			4 		5			0
+%Sugar		Fat		Proteins	Fiber		Cholesterol
+3 			4 		5			0		0
 %Avocados
-%Sugar		Fat		Proteins	Fiber
-3 			4 		5			0
+%Sugar		Fat		Proteins	Fiber		Cholesterol
+3 			4 		5			0		0

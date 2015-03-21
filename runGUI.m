@@ -22,11 +22,8 @@ function runGUI()
         for j = food_nutrients(iterator,:)
             temporary{numel(temporary) + 1} = j(1);
         end
-        if numel(food_stuffs) > 0
-            food_stuffs = [food_stuffs; temporary];
-        else
-            food_stuffs = temporary;
-        end
+        food_stuffs = [food_stuffs; temporary];
+
         temporary = {};
         iterator = iterator + 1;
     end
