@@ -14,9 +14,9 @@ function saveProfile(profile_name, nutrients, values )
         values_str = '';
         for i=1:length(values)
             if i == 1
-                values_str = [values_str num2str(values(1))];
+                values_str = [values_str num2str(values(i))];
             else
-                values_str = [values_str sprintf('\t') num2str(values(1))];
+                values_str = [values_str sprintf('\t') num2str(values(i))];
             end
         end
 
