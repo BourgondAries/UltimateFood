@@ -65,14 +65,7 @@ function runGUI()
         'RowName', [],...
         'Position', [760 80 220 400]...
     );
-        
-    btn = uicontrol...
-    (...
-        'Style', 'pushbutton', 'String', 'Clear',...
-        'Position', [20 20 70 20],...
-        'Callback', @close...
-    );       
-
+      
     compute_button = uicontrol...
     (...
         'Style', 'pushbutton', 'String', 'Compute',...
@@ -113,12 +106,7 @@ function runGUI()
             index = index + 1;
         end
     end
-    
-    function close(source, callbackdata)
-        window.Visible = 'off';
-        close(window);
-    end
-
+   
     function createNewFoodEntry(source, callbackdata)
         new_data = cell(1, numel(food_stuffs_table.Data(1, :)));
         new_data{1} = 'Name';
@@ -142,7 +130,7 @@ function runGUI()
 
     function setOutputTable(food_amount_array, deviation)
         format longG;
-        disp(cell2mat(desired_nutrients(:,2)) .* deviation);
+        disp(cell2mat(desired.Data(:,2)) .* deviation);
         %food_stuffs_table.Data(:, 1)
         
         result.Data = {};
