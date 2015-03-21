@@ -1,0 +1,35 @@
+%
+% This file contains all foodstuffs and their nutritional values.
+% A % means a comment and is ignored by the parser.
+% The names 2 lines before the numbers are read.
+% The empty line (without % signifies the start of the list).
+%
+
+%Sugar		Fat		Proteins	Fiber
+%Bananas		
+%Sugar		Fat		Proteins	Fiber
+0 			0.321 	2			6	
+%Avocados
+%Sugar		Fat		Proteins	Fiber
+3 			4 		5			0
+%Avocados
+%Sugar		Fat		Proteins	Fiber
+3 			4 		5			0
+%Avocados
+%Sugar		Fat		Proteins	Fiber
+3 			4 		5			0
+%Avocados
+%Sugar		Fat		Proteins	Fiber
+3 			4 		5			0
+%Avocados
+%Sugar		Fat		Proteins	Fiber
+3 			4 		5			0
+%Avocados
+%Sugar		Fat		Proteins	Fiber
+3 			4 		5			0
+%Avocados
+%Sugar		Fat		Proteins	Fiber
+3 			4 		5			0
+%Avocados
+%Sugar		Fat		Proteins	Fiber
+3 			4 		5			0
