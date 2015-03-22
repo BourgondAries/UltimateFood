@@ -151,7 +151,7 @@ function runGUI()
             loadProfile();
         end
         
-        %deleteProfile(profile_textbox.String, food_stuffs_table.ColumnName, desired);
+        deleteProfile(profile_textbox.String);
     end
     
     function loadProfile(source, callbackdata)
