@@ -191,7 +191,7 @@ function runGUI()
         end
         
         index = 3; % skip 'Food' and 'Include'
-        while index <= numel(food_stuffs_table.ColumnName)-1 %Why is -1 needed??
+        while index <= numel(food_stuffs_table.ColumnName)
             result.Data(index - 2, 4) = food_stuffs_table.ColumnName(index);
             result.Data(index - 2, 5) = {deviation(index - 2)};
             result.Data(index - 2, 6) = {deviation(index - 2) / desired.Data{index - 2, 2}};
