@@ -117,7 +117,11 @@ function runGUI()
     function saveProfileCallback(source, callbackdata)
         index = isStringInArray(profile_textbox.String, profile_menu.String);
         if index
-            profile_values(index, :) = transpose(cell2mat(desired.Data(:, 2)));
+            if strcmp(questdlg('The profile already exists. Do you want to overwrite this profile?'), 'Yes')
+                profile_values(index, :) = transpose(cell2mat(desired.Data(:, 2)));
+            else
+                return;
+            end
         else
             profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
             profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
@@ -127,6 +131,7 @@ function runGUI()
 
     function deleteProfileCallback(source, callbackdata)
         if numel(profile_menu.String) == 1
+            msgbox('You can not delete the last profile.', 'Profile Message');
         elseif profile_menu.Value == numel(profile_menu.String)
             profile_menu.String(profile_menu.Value) = [];
             profile_menu.String(~cellfun(@isempty, profile_menu.String));
