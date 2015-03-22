@@ -166,9 +166,7 @@ function runGUI()
     end
 
     function setOutputTable(food_amount_array, deviation)
-        format longG;
-        disp('Deviation:');
-        disp(cell2mat(desired.Data(:,2)) .* deviation);
+        deviation = cell2mat(desired.Data(:,2)) .* deviation;
         
         result.Data = {};
         index = 1;
@@ -176,6 +174,19 @@ function runGUI()
             result.Data = [result.Data; food_stuffs_table.Data(index, 1) food_amount_array(index)];
             index = index + 1;
         end
+        
+        index = 3; % skip 'Food' and 'Include'
+        while index <= numel(food_stuffs_table.ColumnName)
+            result.Data(index - 2, 4) = food_stuffs_table.ColumnName(index);
+            result.Data(index - 2, 5) = {deviation(index - 2)};
+            index = index + 1;
+        end
+        
+        result.ColumnWidth(3) = {20};
+        result.ColumnWidth(4) = {120};
+        result.ColumnName(3) = {''};
+        result.ColumnName(4) = {'Deviation'};
+        result.ColumnName(5) = {'Value'};
     end
 
     function compute(source, callbackdata)
