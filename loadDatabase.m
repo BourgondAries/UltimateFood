@@ -3,10 +3,14 @@
     foods.txt will contain the structure
     for the parsing algorithm.
 %}
-function [nutrient_names, food_names, food_nutrients] = loadDatabase()
+function [nutrient_names, food_names, food_nutrients] = loadDatabase(path)
 
-    food_nutrients = load('foods.txt');
-    fileID = fopen('foods.txt');
+    if ~exist('path', 'var')
+        path = 'foods.txt';
+    end
+    
+    food_nutrients = load(path);
+    fileID = fopen(path);
     
     nutrient_names = {};
     food_names = {};
@@ -21,25 +25,22 @@ function [nutrient_names, food_names, food_nutrients] = loadDatabase()
     
     nutrient_names = strsplit(line, '\t');     %For cell to be returned
     
-    nutrients = [];
+    food_names = {};
     while ~feof(fileID)
         
         nut = fgetl(fileID);
         nut = nut(2:length(nut));
  
-        if length(nutrients) == 0
-            nutrients = [nutrients nut];
+        if length(food_names) == 0
+            food_names = [food_names nut];
         else
-            nutrients = [nutrients ' '];
-            nutrients = [nutrients nut];
+            food_names = [food_names nut];
         end
         
         fgets(fileID);
         fgets(fileID);
         
     end
-    
-    food_names = strsplit(nutrients, ' ');
 
     fclose(fileID);
 

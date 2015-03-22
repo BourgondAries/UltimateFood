@@ -136,7 +136,6 @@ function runGUI()
             loadProfile();
         end
         
-        
         %deleteProfile(profile_textbox.String, food_stuffs_table.ColumnName, desired);
     end
     
@@ -146,7 +145,6 @@ function runGUI()
         index = 1;
         disp(number_of_rows);
         while index <= number_of_rows - 2
-            disp(index);
             desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index) 1];
             index = index + 1;
         end
@@ -170,8 +168,8 @@ function runGUI()
 
     function setOutputTable(food_amount_array, deviation)
         format longG;
-        disp('Deviation:');
-        disp(cell2mat(desired.Data(:,2)) .* deviation);
+        %disp('Deviation:');
+        %disp(cell2mat(desired.Data(:,2)) .* deviation);
         
         result.Data = {};
         index = 1;
@@ -193,7 +191,9 @@ function runGUI()
             col_index = 1;
             if food_stuffs_table.Data{index, 2}
                 for j = required_nutrients
-                    input_nutrients(index, col_index) = input_nutrients(index, col_index) / j;
+                    if j ~= 0
+                        input_nutrients(index, col_index) = input_nutrients(index, col_index) / j;
+                    end
                     col_index = col_index + 1;
                 end
             else
@@ -207,30 +207,36 @@ function runGUI()
         
         in_nutrients = transpose(input_nutrients);
         in_nutrients = bsxfun(@times, in_nutrients, elements);
-        
+        tic
         [ food_amount_array, deviation ] = computeOptimalFood( in_nutrients, elements );
-        
+        toc
         setOutputTable(food_amount_array, deviation);
     end
 
     function reloadDatabase(source, callbackdata)
-        [nutrient_names, food_names, food_nutrients] = loadDatabase();
+        [nutrient_names, food_names, food_nutrients] = loadDatabase('nutritional value.txt');
         [profile_names, profile_values] = loadProfiles();
         temporary = {};
-        food_stuffs = {};
+        food_stuffs = cell(size(food_nutrients, 1), size(food_nutrients, 2) + 2);
         iterator = 1;
+        tic
         for i = food_names
             temporary{numel(temporary) + 1} = i{1};
             temporary{numel(temporary) + 1} = true;
-            for j = food_nutrients(iterator,:)
+            
+            for j = food_nutrients(iterator, :)
                 temporary{numel(temporary) + 1} = j(1);
             end
-            food_stuffs = [food_stuffs; temporary];
+           
+            food_stuffs(iterator, :) = temporary;
 
             temporary = {};
             iterator = iterator + 1;
+            
         end
 
+        
+        toc
         food_stuffs_table.ColumnName = {'Food', 'Include'};
 
         for i = nutrient_names
