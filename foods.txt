@@ -1,18 +1,14 @@
-% This is the info text
+%
+% This file contains all foodstuffs and their nutritional values.
+% A % means a comment and is ignored by the parser.
+% The names 2 lines before the numbers are read.
+% The empty line (without % signifies the start of the list).
+%
 
-%Energy	Carbohydrate	Fat	Proteins	Fiber	Cholesterol	
-%Avocados
-%Energy	Carbohydrate	Fat	Proteins	Fiber	Cholesterol	
-6694400 0.0900 0.1500 0.0200 0.0700 0.0000
-%Bananas
-%Energy	Carbohydrate	Fat	Proteins	Fiber	Cholesterol	
-3723760 0.2300 0.0030 0.0110 0.0260 0.0000
-%Oats
-%Energy	Carbohydrate	Fat	Proteins	Fiber	Cholesterol	
-15900000 0.6770 0.0065 0.0132 0.0101 0.0000
-%Milk,light
-%Energy	Carbohydrate	Fat	Proteins	Fiber	Cholesterol	
-1800000 0.0460 0.0012 0.0340 0.0000 0.0000
-%Salmon
-%Energy	Carbohydrate	Fat	Proteins	Fiber	Cholesterol	
-5900000 0.0000 0.0634 0.1984 0.0000 0.0000
+%Energy (kJ)	Total Carbohydrate (g) 		Dietary Fiber (g) 		Sugars (g)		Total Fat (g)	Saturated Fat (g) 	Monounsaturated (g)		Polyunsaturated (g)		Trans Fat (g)		Alpha-Lineolic Acid (g) 	Lineolic Acid (g) 		Cholesterol (mg) 	Protein (g) 	Water (g) 		Vitamin A (mcg)		Thiamine (B1) (mg) 		Riboflavin (B2) (mg)		Niacin (B3) (mg)		Pantothenic Acid (B5) (mg)		Vitamin B6 (mg)		Biotin (B7) (mcg) 		Folate (B9) (mcg)		Vitamin B12 (mcg)		Vitamin C (mg) 		Vitamin D (mcg)		Vitamin E (mg) 		Vitamin K (mcg)		Choline (mg)	Calcium (mg) 	Chloride (g) 	Chromium (mcg)		Copper (mcg)		Fluoride (mg)			Iodine (mcg) 		Iron (mg)		Magnesium (mg)		Manganese (mg) 		Molybdenum (mcg)		Phosphorus (mg)		Potassium (mg)	Selenium (mcg)			Sodium (mg)		Zinc (mg)
+%Avocado
+%Energy (kJ)	Total Carbohydrate (g) 		Dietary Fiber (g) 		Sugars (g)		Total Fat (g)	Saturated Fat (g) 	Monounsaturated (g)		Polyunsaturated (g)		Trans Fat (g)		Alpha-Lineolic Acid (g) 	Lineolic Acid (g) 		Cholesterol (mg) 	Protein (g) 	Water (g) 		Vitamin A (mcg)		Thiamine (B1) (mg) 		Riboflavin (B2) (mg)		Niacin (B3) (mg)		Pantothenic Acid (B5) (mg)		Vitamin B6 (mg)		Biotin (B7) (mcg) 		Folate (B9) (mcg)		Vitamin B12 (mcg)		Vitamin C (mg) 		Vitamin D (mcg)		Vitamin E (mg) 		Vitamin K (mcg)		Choline (mg)	Calcium (mg) 	Chloride (g) 	Chromium (mcg)		Copper (mcg)		Fluoride (mg)			Iodine (mcg) 		Iron (mg)		Magnesium (mg)		Manganese (mg) 		Molybdenum (mcg)		Phosphorus (mg)		Potassium (mg)	Selenium (mcg)			Sodium (mg)		Zinc (mg)
+670				8.53 						6.7 					0.66			14.66			2.13				9.8						1.82					0 					0 							0 						0 					2 				73.23			7 					0.067					0.13						1.738					1.389 							0.257 				0 						81 						0						10 					0 					2.07 				21 					0 				12 				0 				0 					0 					0 						0 					0.55 			29 					0.142 				0 						52 					485 				0 					7 				0.64
+%Banana
+%Energy (kJ)	Total Carbohydrate (g) 		Dietary Fiber (g) 		Sugars (g)		Total Fat (g)	Saturated Fat (g) 	Monounsaturated (g)		Polyunsaturated (g)		Trans Fat (g)		Alpha-Lineolic Acid (g) 	Lineolic Acid (g) 		Cholesterol (mg) 	Protein (g) 	Water (g) 		Vitamin A (mcg)		Thiamine (B1) (mg) 		Riboflavin (B2) (mg)		Niacin (B3) (mg)		Pantothenic Acid (B5) (mg)		Vitamin B6 (mg)		Biotin (B7) (mcg) 		Folate (B9) (mcg)		Vitamin B12 (mcg)		Vitamin C (mg) 		Vitamin D (mcg)		Vitamin E (mg) 		Vitamin K (mcg)		Choline (mg)	Calcium (mg) 	Chloride (g) 	Chromium (mcg)		Copper (mcg)		Fluoride (mg)			Iodine (mcg) 		Iron (mg)		Magnesium (mg)		Manganese (mg) 		Molybdenum (mcg)		Phosphorus (mg)		Potassium (mg)	Selenium (mcg)			Sodium (mg)		Zinc (mg)
+371				22.84						2.6 					12.23			0.33			0 					0 						0.33 					0 					0 							0 						0 					1.09 			0 				0 					0.031 					0.073 						0.665 					0.334 							0.4 				0 						20 						0 						8.7					0					0					0 					9.8 			0 				0 				0 					0 					2200					0 					0.26 			27 					0.27 				0 						22 					358 			0 						1 				0.15

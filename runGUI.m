@@ -13,7 +13,7 @@ function runGUI()
     (...
             'ColumnFormat', {'numeric', 'logical', 'bank'},...
             'ColumnEditable', [true],...
-            'ColumnWidth', {60 60 120 'auto'},...
+            'ColumnWidth', {100 60 120 'auto'},...
             'RowName', [],...
             'Position', [20 80 500 400],...
             'CellSelectionCallback', @selectFood...
@@ -143,7 +143,6 @@ function runGUI()
         desired.Data = {};
         number_of_rows = numel(food_stuffs_table.ColumnName);
         index = 1;
-        disp(number_of_rows);
         while index <= number_of_rows - 2
             desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index) 1];
             index = index + 1;
@@ -193,6 +192,8 @@ function runGUI()
                 for j = required_nutrients
                     if j ~= 0
                         input_nutrients(index, col_index) = input_nutrients(index, col_index) / j;
+                    else
+                        input_nutrients(index, col_index) = 0;
                     end
                     col_index = col_index + 1;
                 end
@@ -214,12 +215,11 @@ function runGUI()
     end
 
     function reloadDatabase(source, callbackdata)
-        [nutrient_names, food_names, food_nutrients] = loadDatabase('nutritional value.txt');
+        [nutrient_names, food_names, food_nutrients] = loadDatabase();
         [profile_names, profile_values] = loadProfiles();
         temporary = {};
         food_stuffs = cell(size(food_nutrients, 1), size(food_nutrients, 2) + 2);
         iterator = 1;
-        tic
         for i = food_names
             temporary{numel(temporary) + 1} = i{1};
             temporary{numel(temporary) + 1} = true;
@@ -234,9 +234,7 @@ function runGUI()
             iterator = iterator + 1;
             
         end
-
         
-        toc
         food_stuffs_table.ColumnName = {'Food', 'Include'};
 
         for i = nutrient_names
