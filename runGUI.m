@@ -179,6 +179,7 @@ function runGUI()
         while index <= numel(food_stuffs_table.ColumnName)
             result.Data(index - 2, 4) = food_stuffs_table.ColumnName(index);
             result.Data(index - 2, 5) = {deviation(index - 2)};
+            result.Data(index - 2, 6) = {deviation(index - 2) / desired.Data{index - 2, 2}};
             index = index + 1;
         end
         
@@ -187,6 +188,7 @@ function runGUI()
         result.ColumnName(3) = {''};
         result.ColumnName(4) = {'Deviation'};
         result.ColumnName(5) = {'Value'};
+        result.ColumnName(6) = {'Percent'};
     end
 
     function compute(source, callbackdata)
