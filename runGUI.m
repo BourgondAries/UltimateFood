@@ -115,13 +115,27 @@ function runGUI()
     reloadDatabase();
 
     function saveProfileCallback(source, callbackdata)
-        profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
-        %profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
+        index = isStringInArray(profile_textbox.String, profile_menu.String);
+        if index
+            if strcmp(questdlg('The profile already exists. Do you want to overwrite this profile?'), 'Yes')
+                profile_values(index, :) = transpose(cell2mat(desired.Data(:, 2)));
+                profile_menu.Value = index;
+            else
+                return;
+            end
+        else
+            profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
+            profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
+            profile_menu.Value = numel(profile_menu.String);
+        end
         saveProfile(profile_textbox.String, transpose(food_stuffs_table.ColumnName), transpose(cell2mat(desired.Data(:, 2))));
+        
+        loadProfile();
     end
 
     function deleteProfileCallback(source, callbackdata)
         if numel(profile_menu.String) == 1
+            msgbox('You can not delete the last profile.', 'Profile Message');
         elseif profile_menu.Value == numel(profile_menu.String)
             profile_menu.String(profile_menu.Value) = [];
             profile_menu.String(~cellfun(@isempty, profile_menu.String));
@@ -144,7 +158,7 @@ function runGUI()
         desired.Data = {};
         number_of_rows = numel(food_stuffs_table.ColumnName);
         index = 1;
-        while index <= number_of_rows - 3 % <- changed from 2 to 3
+        while index <= number_of_rows - 2
             desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index) 1];
             index = index + 1;
         end
@@ -177,7 +191,7 @@ function runGUI()
         end
         
         index = 3; % skip 'Food' and 'Include'
-        while index <= numel(food_stuffs_table.ColumnName)-1 %Why is -1 needed??
+        while index <= numel(food_stuffs_table.ColumnName)
             result.Data(index - 2, 4) = food_stuffs_table.ColumnName(index);
             result.Data(index - 2, 5) = {deviation(index - 2)};
             result.Data(index - 2, 6) = {deviation(index - 2) / desired.Data{index - 2, 2}};
