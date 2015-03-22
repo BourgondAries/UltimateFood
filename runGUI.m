@@ -161,6 +161,10 @@ function runGUI()
                 return;
             end
         else
+            if strcmp(profile_textbox.String, '')
+                errordlg('You can''t create a profile that has no name.', 'Profile creation');
+                return;
+            end
             profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
             profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
             profile_menu.Value = numel(profile_menu.String);
