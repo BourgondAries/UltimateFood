@@ -116,8 +116,8 @@ function runGUI()
 
     function saveProfileCallback(source, callbackdata)
         profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
-        profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
-        %saveProfile(profile_textbox.String, transpose(food_stuffs_table.ColumnName), profile_values);
+        %profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
+        saveProfile(profile_textbox.String, transpose(food_stuffs_table.ColumnName), transpose(cell2mat(desired.Data(:, 2))));
     end
 
     function deleteProfileCallback(source, callbackdata)
