@@ -115,21 +115,42 @@ function runGUI()
     reloadDatabase();
 
     function saveProfileCallback(source, callbackdata)
-        saveProfile(profile_textbox.String, food_stuffs_table.ColumnName, desired);
+        profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
+        profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
+        %saveProfile(profile_textbox.String, food_stuffs_table.ColumnName, desired);
     end
 
     function deleteProfileCallback(source, callbackdata)
-        deleteProfile(profile_textbox.String, food_stuffs_table.ColumnName, desired);
+        if numel(profile_menu.String) == 1
+        elseif profile_menu.Value == numel(profile_menu.String)
+            profile_menu.String(profile_menu.Value) = [];
+            profile_menu.String(~cellfun(@isempty, profile_menu.String));
+            profile_values(profile_menu.Value, :) = [];
+            
+            profile_menu.Value = profile_menu.Value - 1;
+            loadProfile();
+        else
+            profile_menu.String(profile_menu.Value) = [];
+            profile_menu.String(~cellfun(@isempty,profile_menu.String));
+            profile_values(profile_menu.Value) = [];
+            loadProfile();
+        end
+        
+        
+        %deleteProfile(profile_textbox.String, food_stuffs_table.ColumnName, desired);
     end
     
     function loadProfile(source, callbackdata)
         desired.Data = {};
         number_of_rows = numel(food_stuffs_table.ColumnName);
         index = 1;
+        disp(number_of_rows);
         while index <= number_of_rows - 2
+            disp(index);
             desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index) 1];
             index = index + 1;
         end
+        disp('outside');
         profile_textbox.String = profile_menu.String{profile_menu.Value};
     end
    
