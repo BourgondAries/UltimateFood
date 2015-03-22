@@ -151,6 +151,11 @@ function runGUI()
 
     reloadDatabase();
     
+    if numel(food_stuffs_table.ColumnName) - 2 ~= numel(desired.Data(:, 1))
+        errordlg('The profile does not seem to match in property count to the food database.', 'Inconsistent state.');
+        return;
+    end
+    
     function saveProfileCallback(source, callbackdata)
         index = isStringInArray(profile_textbox.String, profile_menu.String);
         if index
@@ -177,22 +182,21 @@ function runGUI()
     function deleteProfileCallback(source, callbackdata)
         if numel(profile_menu.String) == 1
             msgbox('You can not delete the last profile.', 'Profile Message');
+            return;
         elseif profile_menu.Value == numel(profile_menu.String)
             profile_menu.String(profile_menu.Value) = [];
             profile_menu.String(~cellfun(@isempty, profile_menu.String));
             profile_values(profile_menu.Value, :) = [];
-            
+            deleteProfile(profile_textbox.String);
             profile_menu.Value = profile_menu.Value - 1;
             loadProfile();
         else
             profile_menu.String(profile_menu.Value) = [];
             profile_menu.String(~cellfun(@isempty, profile_menu.String));
             profile_values(profile_menu.Value, :) = [];
-            
+            deleteProfile(profile_textbox.String);
             loadProfile();
         end
-        
-        deleteProfile(profile_textbox.String);
     end
     
     function loadProfile(source, callbackdata)
