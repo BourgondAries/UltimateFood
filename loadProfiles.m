@@ -1,4 +1,4 @@
-function [profile_names, values] = loadProfiles( )
+function [profile_names, values] = loadProfiles()
 
     profile_names = {};
     profiles = [];
