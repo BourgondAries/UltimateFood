@@ -119,14 +119,18 @@ function runGUI()
         if index
             if strcmp(questdlg('The profile already exists. Do you want to overwrite this profile?'), 'Yes')
                 profile_values(index, :) = transpose(cell2mat(desired.Data(:, 2)));
+                profile_menu.Value = index;
             else
                 return;
             end
         else
             profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
             profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
+            profile_menu.Value = numel(profile_menu.String);
         end
         saveProfile(profile_textbox.String, transpose(food_stuffs_table.ColumnName), transpose(cell2mat(desired.Data(:, 2))));
+        
+        loadProfile();
     end
 
     function deleteProfileCallback(source, callbackdata)
