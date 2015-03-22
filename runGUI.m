@@ -117,7 +117,7 @@ function runGUI()
     function saveProfileCallback(source, callbackdata)
         profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
         profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
-        %saveProfile(profile_textbox.String, food_stuffs_table.ColumnName, desired);
+        %saveProfile(profile_textbox.String, transpose(food_stuffs_table.ColumnName), profile_values);
     end
 
     function deleteProfileCallback(source, callbackdata)
@@ -143,7 +143,7 @@ function runGUI()
         desired.Data = {};
         number_of_rows = numel(food_stuffs_table.ColumnName);
         index = 1;
-        while index <= number_of_rows - 2
+        while index <= number_of_rows - 3 % <- changed from 2 to 3
             desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index) 1];
             index = index + 1;
         end
