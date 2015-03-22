@@ -115,9 +115,14 @@ function runGUI()
     reloadDatabase();
 
     function saveProfileCallback(source, callbackdata)
-        profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
-        profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
-        %saveProfile(profile_textbox.String, transpose(food_stuffs_table.ColumnName), transpose(cell2mat(desired.Data(:, 2))));
+        index = isStringInArray(profile_textbox.String, profile_menu.String);
+        if index
+            profile_values(index, :) = transpose(cell2mat(desired.Data(:, 2)));
+        else
+            profile_menu.String{numel(profile_menu.String) + 1} = profile_textbox.String;
+            profile_values = [profile_values; transpose(cell2mat(desired.Data(:, 2)))];
+        end
+        saveProfile(profile_textbox.String, transpose(food_stuffs_table.ColumnName), transpose(cell2mat(desired.Data(:, 2))));
     end
 
     function deleteProfileCallback(source, callbackdata)
