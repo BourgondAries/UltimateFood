@@ -113,7 +113,7 @@ function runGUI()
     profile_values = {};
 
     reloadDatabase();
-
+    
     function saveProfileCallback(source, callbackdata)
         index = isStringInArray(profile_textbox.String, profile_menu.String);
         if index
@@ -159,10 +159,10 @@ function runGUI()
         number_of_rows = numel(food_stuffs_table.ColumnName);
         index = 1;
         while index <= number_of_rows - 2 % <- changed from 2 to 3
+            food_stuffs_table.ColumnName
             desired.Data = [desired.Data; food_stuffs_table.ColumnName(index + 2) profile_values(profile_menu.Value, index) 1];
             index = index + 1;
         end
-        disp('outside');
         profile_textbox.String = profile_menu.String{profile_menu.Value};
     end
    
