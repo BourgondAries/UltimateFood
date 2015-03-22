@@ -40,7 +40,8 @@ function saveProfile(profile_name, nutrients, values )
         file_to_cell{index_pname(1) + 2} = values_str;
         
         fileID = fopen('profiles.txt', 'w');
-        fprintf(fileID, '%s\n', file_to_cell{:});
+        fprintf(fileID, '%s\n', file_to_cell{1:end-1});
+        fprintf(fileID, '%s', file_to_cell{end});
 
     end
       
