@@ -11,7 +11,7 @@ function saveDatabase(cell_array, nutrients )
         if i==3
             nuts_str = [nuts_str, sprintf('%s%s\t', '%', nutrients{i})];
         else
-            nuts_str = [nuts_str, sprintf('%s\t', nutrients{i})];
+            nuts_str = [nuts_str, sprintf('\t%s', nutrients{i})];
         end
     end
     fprintf(fileID,'%s',nuts_str);

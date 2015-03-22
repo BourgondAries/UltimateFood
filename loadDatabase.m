@@ -27,7 +27,7 @@ function [nutrient_names, food_names, food_nutrients, units] = loadDatabase(path
     end
 
     line = fgets(fileID);
-    line = line(2:length(line)-2);
+    line = line(2:length(line)-1);
     
     nutrient_names = strsplit(line, '\t');     %For cell to be returned
     
