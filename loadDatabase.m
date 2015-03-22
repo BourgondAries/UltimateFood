@@ -3,7 +3,7 @@
     foods.txt will contain the structure
     for the parsing algorithm.
 %}
-function [nutrient_names, food_names, food_nutrients] = loadDatabase(path)
+function [nutrient_names, food_names, food_nutrients, units] = loadDatabase(path)
 
     if ~exist('path', 'var')
         path = 'foods.txt';
@@ -14,10 +14,16 @@ function [nutrient_names, food_names, food_nutrients] = loadDatabase(path)
     
     nutrient_names = {};
     food_names = {};
+    units = {};
     
     line = '%';
+    i=1;
     while strcmp(line(1), '%')
        line = fgets(fileID);
+       if strcmp(path, 'nutritional value.txt') && i == 2
+           units = strsplit(line(2:end));
+       end
+    i = i + 1;       
     end
 
     line = fgets(fileID);
